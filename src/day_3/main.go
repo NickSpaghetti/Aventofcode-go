@@ -50,9 +50,9 @@ func question2(f string) {
 }
 
 func readRuckSack(fileName string) string {
-	byteSlice, error := os.ReadFile(fileName)
-	if error != nil {
-		fmt.Println("Error:", error)
+	byteSlice, err := os.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
 
@@ -74,7 +74,7 @@ func calcSum(ruckSackLine string) int {
 		updateMapCount(secondMap, string(s))
 	}
 
-	for fk, _ := range firstMap {
+	for fk := range firstMap {
 		_, found := secondMap[fk]
 		if found {
 			index := indexOfLetter(fk, 1)
@@ -127,7 +127,7 @@ func findDistinctLetter(e []rune, el []rune, elf []rune) int {
 }
 
 func isContainedIn(s []rune, l rune) bool {
-	for v, _ := range s {
+	for v := range s {
 		if l == s[v] {
 			return true
 		}
@@ -136,7 +136,7 @@ func isContainedIn(s []rune, l rune) bool {
 }
 
 func take(lst []string, start int, end int) []string {
-	taken := []string{}
+	var taken []string
 	for i := start; i < end; i++ {
 		if i >= len(lst) {
 			return nil
